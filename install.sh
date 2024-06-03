@@ -1,7 +1,8 @@
 #!/bin/bash
 
 function k_version {
-	local _ver=$(git ls-remote https://github.com/prime-strategy/kusanagi-docker | \
+	#local _ver=$(git ls-remote https://github.com/prime-strategy/kusanagi-docker | \
+ 	local _ver=$(git ls-remote https://github.com/sugitaku03031/kusanagi-docker | \
 		 awk -F/ '/tags/ {print $3}' | sort | tail -1 )
 	echo ${_ver:-master}
 }
