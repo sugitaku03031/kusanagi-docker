@@ -4,7 +4,7 @@
 # Licenced by GNU GPL v2
 #
 
-DOCKER_COMPOSE=$(which docker-compose)
+DOCKER_COMPOSE="sudo docker compose"
 [ "x$DOCKER_COMPOSE" = "x" ] && DOCKER_COMPOSE=$(which docker-compose.exe)
 LOCAL_KUSANAGI_FILE=.kusanagi
 export TEXTDOMAIN="kusanagi-docker"
@@ -12,7 +12,7 @@ export TEXTDOMAINDIR="$LIBDIR/locale"
 . $(which gettext.sh)
 
 function k_compose() {
-	"$DOCKER_COMPOSE" $@
+	$DOCKER_COMPOSE $@
 }
 
 function k_configcmd() {
@@ -41,7 +41,7 @@ function k_mariadb_check() {
 	if [[ $NO_USE_DB ]]; then
 		OPT="-h$DBHOST -P$DBPORT"
 	fi
-	k_configcmd "/" mysqladmin status $OPT -u$DBUSER -p"$DBPASS" 2>&1 > /dev/null
+	k_configcmd "/" mysqladmin --socket=/var/run/mysqld/mysql.sock --host=localhost status $OPT -u$DBUSER -p"$DBPASS" 2>&1 > /dev/null
 	return $?
 }
 
@@ -77,7 +77,7 @@ function k_copy() {
 
 	for f in $@ ;
 	do
-		docker cp $f ${_container_id}:${_container_path}
+		sudo docker cp $f ${_container_id}:${_container_path}
 	done
 }
 
