@@ -21,7 +21,8 @@ if [ -d $KUSANAGIDIR/.git ] ; then
 	rm $KUSANAGIDIR/.version $KUSANAGIDIR/lib/image_versions
 	(cd $KUSANAGIDIR && git pull )
 else	
-	git clone https://github.com/prime-strategy/kusanagi-docker.git $KUSANAGIDIR
+	#git clone https://github.com/prime-strategy/kusanagi-docker.git $KUSANAGIDIR
+ 	git clone https://github.com/sugitaku03031/kusanagi-docker.git $KUSANAGIDIR
 fi
 cd $KUSANAGIDIR
 git checkout $version
