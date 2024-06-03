@@ -15,7 +15,7 @@ if [[ $NO_USE_DB ]] ; then
 	echo "mysqli.default_user = $DBUSER" >> $_wpini
 	echo "mysqli.default_pw   = $DBPASS" >> $_wpini
 else
-	echo 'mysqli.default_socket = /var/run/mysqld/mysqld.sock' > $_wpini
+	echo 'mysqli.default_socket = /var/run/mysqld/mysql.sock' > $_wpini
 fi
 
 WSL1_BUILD=
